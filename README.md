@@ -4,7 +4,7 @@ On-demand image manipulation for Craft 3 using Glide 1.0 from The PHP League.
 
 ## Example Usage
 
-<img src="myimage.jpg?w=100&h=200" alt="My Image" />
+    <img src="myimage.jpg?w=100&h=200" alt="My Image" />
 
 FOr more information about what parameters are supported please see the [Glide website](https://glide.thephpleague.com/1.0/api/quick-reference/).
 
