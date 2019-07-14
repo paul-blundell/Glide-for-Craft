@@ -32,7 +32,8 @@ class ParseController extends Controller
         // Load Glide
         $server = ServerFactory::create([
             'source' => $query->volume->path,
-            'cache' => './glide-cache'
+            'cache' => '../storage/glide',
+            'driver' => $settings->driver
         ]);
         
         // Render Image

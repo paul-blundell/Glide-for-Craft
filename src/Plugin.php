@@ -35,7 +35,7 @@ class Plugin extends \craft\base\Plugin
                     'key' => 'glide-transforms',
                     'label' => Craft::t('app', 'Glide Transforms'),
                     'action' => function() {
-                        FileHelper::clearDirectory('./glide-cache');
+                        FileHelper::clearDirectory('../storage/glide');
                     }
                 ];
             }
