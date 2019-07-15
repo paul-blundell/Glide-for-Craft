@@ -10,7 +10,7 @@ For more information about what parameters are supported please see the [Glide w
 
 ## Installation
 
-    composer require blundell/craft3-glide
+    composer require paul-blundell/craft3-glide
     
 Set your Local Asset Volume base URL to the following;
 

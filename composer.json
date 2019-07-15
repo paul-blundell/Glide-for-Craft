@@ -1,5 +1,5 @@
 {
-  "name": "blundell/craft3-glide",
+  "name": "paul-blundell/craft3-glide",
   "description": "Add Glide support to Craft 3",
   "version": "1.0.0",
   "type": "craft-plugin",
