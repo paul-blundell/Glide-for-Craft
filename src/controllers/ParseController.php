@@ -19,33 +19,33 @@ class ParseController extends Controller
         unset($params['p']);
 
         // Find asset by filename
-        $query = Asset::find()->filename(basename($path))->all();
+        $assets = Asset::find()->filename(basename($path))->all();
 
         // Filter out assets not in this folder
-        $query = array_filter($query, function ($asset) use ($path) {
+        $assets = array_filter($assets, function ($asset) use ($path) {
           /**
            * @var Asset $asset
            */
           return (strpos($path, $asset->folderPath . $asset->filename) !== false);
         });
 
-        if (empty($query))
+        if (empty($assets))
         {
-           throw new \Exception("No assets found.");
+          throw new \Exception("No assets found.");
         }
 
-        $firstItemKey = array_key_first($query);
-        $query        = $query[$firstItemKey];
+        $firstItemKey = array_key_first($assets);
+        $asset        = $assets[$firstItemKey];
 
         $settings = Plugin::getInstance()->getSettings();
         if ($settings->signed) {
-            $parts = parse_url($query->volume->url);
+            $parts = parse_url($asset->volume->url);
             SignatureFactory::create($settings->key)->validateRequest($parts['path'].$path, $params);
         }
 
         // Load Glide
         $server = ServerFactory::create([
-            'source' => Craft::parseEnv($query->volume->path),
+            'source' => Craft::parseEnv($asset->volume->path),
             'cache' => '../storage/glide',
             'driver' => $settings->driver
         ]);
