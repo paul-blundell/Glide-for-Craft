@@ -11,7 +11,7 @@ class Render extends Component
     public function url($path, $params)
     {
         $settings = Plugin::getInstance()->getSettings();
-        
+
         // Find asset by filename
         $query = Asset::find()->filename(basename($path))->all();
 
@@ -24,14 +24,16 @@ class Render extends Component
         });
 
         if (empty($query))
-          throw new \Exception("No assets found.");
+        {
+           throw new \Exception("No assets found.");
+        }
 
         $firstItemKey = array_key_first($query);
         $query        = $query[$firstItemKey];
-        
+
         // Create an instance of the URL builder
         $urlBuilder = UrlBuilderFactory::create($query->volume->url, $settings->key);
-        
+
         // Generate a URL
         return $urlBuilder->getUrl($path, $params);
     }
