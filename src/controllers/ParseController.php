@@ -19,9 +19,20 @@ class ParseController extends Controller
         unset($params['p']);
         
         // Find asset by filename
-        $query = Asset::find()->filename($path)->one();
-        if (!$query)
-            throw new \Exception('Asset not found.');
+        $query = Asset::find()->filename(basename($path))->all();
+
+        // Filter out assets not in this folder
+        $query = array_filter($query, function ($asset) use ($path) {
+          /**
+           * @var Asset $asset
+           */
+          return (strpos($path, $asset->folderPath) !== false);
+        });
+
+        if (count($query) !== 1)
+          throw new \Exception(count($query) . " assets found.");
+
+        $query = $query[0];
             
         $settings = Plugin::getInstance()->getSettings();
         if ($settings->signed) {
