@@ -12,9 +12,22 @@ class Render extends Component
     {
         $settings = Plugin::getInstance()->getSettings();
         
-        $query = Asset::find()->filename($path)->one();
-        if (!$query)
-            throw new \Exception('Asset not found.');
+        // Find asset by filename
+        $query = Asset::find()->filename(basename($path))->all();
+
+        // Filter out assets not in this folder
+        $query = array_filter($query, function ($asset) use ($path) {
+          /**
+           * @var Asset $asset
+           */
+          return (strpos($path, $asset->folderPath . $asset->filename) !== false);
+        });
+
+        if (empty($query))
+          throw new \Exception("No assets found.");
+
+        $firstItemKey = array_key_first($query);
+        $query        = $query[$firstItemKey];
         
         // Create an instance of the URL builder
         $urlBuilder = UrlBuilderFactory::create($query->volume->url, $settings->key);
