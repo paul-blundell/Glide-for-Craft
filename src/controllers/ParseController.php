@@ -26,13 +26,14 @@ class ParseController extends Controller
           /**
            * @var Asset $asset
            */
-          return (strpos($path, $asset->folderPath) !== false);
+          return (strpos($path, $asset->folderPath . $asset->filename) !== false);
         });
 
-        if (count($query) !== 1)
-          throw new \Exception(count($query) . " assets found.");
+        if (empty($query))
+          throw new \Exception("No assets found.");
 
-        $query = $query[0];
+        $firstItemKey = array_key_first($query);
+        $query        = $query[$firstItemKey];
             
         $settings = Plugin::getInstance()->getSettings();
         if ($settings->signed) {
