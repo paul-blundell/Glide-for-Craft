@@ -1,7 +1,7 @@
 {
   "name": "paul-blundell/craft3-glide",
   "description": "Add Glide support to Craft 3",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "type": "craft-plugin",
   "require": {
     "craftcms/cms": "^3.0.0",
