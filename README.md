@@ -4,7 +4,10 @@ On-demand image manipulation for Craft 3 using Glide 1.0 from The PHP League.
 
 ## Example Usage
 
-    <img src="myimage.jpg?w=100&h=200" alt="My Image" />
+    <img src="/glide/myimage.jpg?w=100&h=200" alt="My Image" />
+    
+If your asset uploaded to craft is `mysite.com/assets/img/animage.jpg`
+then this can now be rendered with Glide at `mysite.com/glide/animage.jpg?w=100`
 
 For more information about what parameters are supported please see the [Glide website](https://glide.thephpleague.com/1.0/api/quick-reference/).
 
@@ -50,3 +53,4 @@ Or with Twig:
 ## Roadmap
 
 - Add support for non-local asset volumes
+- Update to Glide 2.0
