@@ -1,5 +1,7 @@
 # Glide for Craft
 
+**Craft 5 and Glide 2.0** version available at: https://github.com/Wish-and-Dell/Craft-Glide
+
 On-demand image manipulation for Craft 3 using Glide 1.0 from The PHP League.
 
 ## Example Usage
